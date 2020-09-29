@@ -12,11 +12,7 @@ private:
 
 public:
 
-	Car(int _platformType, int _engineType, int _doorType): platformType(_platformType), engineType(_engineType), doorType(_doorType) {};
-
-	Car(const Car& car): platformType(car.platformType), engineType(car.engineType), doorType(car.doorType) {}; 
-
-	Car(): platformType(0), engineType(0), doorType(0) {};
+ 	Car(): platformType(0), engineType(0), doorType(0) {};
 
 	std::string getParameters() {
 		return std::to_string(platformType) + " " + std::to_string(engineType) + " " + std::to_string(doorType);
@@ -60,7 +56,8 @@ int main() {
 	builder.setEngineType(b);
 	builder.setPlatformType(c);
 
-	Car car = *builder.getResult();
-	std::cout << car.getParameters() << std::endl;
+	Car* car_ptr = builder.getResult();
+	std::cout << car_ptr->getParameters() << std::endl;
+	delete car_ptr;
 	return 0;
 }
